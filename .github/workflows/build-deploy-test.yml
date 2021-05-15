@@ -39,7 +39,7 @@ jobs:
   
   deploy:
     name: Deploy
-    needs: Build
+    needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/env/test'
     
@@ -48,10 +48,10 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: test-files
-        path: build
+        path: ./.next
 
     - name: Deploy to condiment-bowl
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: build
+        publish_dir: ./.next
