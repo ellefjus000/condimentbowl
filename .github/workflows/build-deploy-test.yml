@@ -31,10 +31,10 @@ jobs:
     - name: Run tests
       run: npm run test
 
-    - name: Upload production-ready build files
+    - name: Upload test-ready build files
       uses: actions/upload-artifact@v2
       with:
-        name: production-files
+        name: test-files
         path: ./.next
   
   deploy:
@@ -47,7 +47,7 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v2
       with:
-        name: production-files
+        name: test-files
         path: build
 
     - name: Deploy to condiment-bowl
