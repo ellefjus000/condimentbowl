@@ -31,21 +31,23 @@ jobs:
     - name: Run tests
       run: npm run test
 
-    - name: Upload test-ready build files
+    - name: Upload production-ready build files
       uses: actions/upload-artifact@v2
       with:
-        name: test-files
+        name: production-files
         path: ./build
   
   deploy:
     name: Deploy
-    needs: build
+    needs: Build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/env/test'
+    
+    steps:
     - name: Download artifact
       uses: actions/download-artifact@v2
       with:
-        name: test-files
+        name: production-files
         path: ./build
 
     - name: Deploy to condiment-bowl
