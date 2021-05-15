@@ -5,3 +5,9 @@ This uses the Sleeper API.
 
 <!--Link References ( https://www.markdownguide.org/basic-syntax/#reference-style-links )-->
 [cb-web]: https://github.com/ellefjus000/condimentbowl-web
+
+# React Tutorial
+https://reactjs.org/tutorial/tutorial.html
+
+# NextJS Tutorial
+https://nextjs.org/learn/basics/create-nextjs-app
