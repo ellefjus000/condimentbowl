@@ -1,4 +1,4 @@
-name: Build & deploy
+name: Build & deploy production
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - master
-      - env/test
 
 jobs:
   build:
@@ -44,20 +43,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: production-files
-        path: ./build
-
-    - name: Deploy to condiment-bowl
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
-    
-    if: github.ref == 'refs/heads/env/test'
     steps:
     - name: Download artifact
       uses: actions/download-artifact@v2
