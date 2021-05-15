@@ -2,6 +2,7 @@
   "name": "learn-starter",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ellefjus000.github.io/condimentbowl-ui/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
