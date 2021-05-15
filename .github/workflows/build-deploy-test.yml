@@ -39,14 +39,14 @@ jobs:
   
   deploy:
     name: Deploy
-    needs: build
+    needs: Build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/env/test'
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
     - name: Download artifact
       uses: actions/download-artifact@v2
       with:
