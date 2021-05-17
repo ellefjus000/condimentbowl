@@ -3,6 +3,9 @@ This is the UI component for the Condiment Bowl Statistics site ( powered by [co
 This uses the Sleeper API.
 ***
 
+# Workflow Managment Tool (Kanban)
+Jira - https://condimentbowl.atlassian.net/jira/software/projects/CB/boards/1
+
 <!--Link References ( https://www.markdownguide.org/basic-syntax/#reference-style-links )-->
 [cb-web]: https://github.com/ellefjus000/condimentbowl-web
 
