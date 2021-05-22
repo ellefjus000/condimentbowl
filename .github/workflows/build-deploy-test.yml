@@ -1,0 +1,60 @@
+name: Build & deploy test
+
+on:
+  push:
+    branches:
+      - env/test
+  pull_request:
+    branches:
+      - env/test
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    
+    - name: Install NPM packages
+      run: npm ci
+    
+    - name: Build project
+      run: npm run build
+    
+    - name: Run tests
+      run: npm run test
+
+    - name: Export static project
+      run: npm run export
+
+    - name: Upload test-ready build files
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-files
+        path: ./out
+  
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/env/test'
+    
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: test-files
+        path: ./out
+
+    - name: Deploy to condiment-bowl
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out
