@@ -53,8 +53,10 @@ jobs:
         name: production-files
         path: ./out
 
-    - name: Deploy to condiment-bowl
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Deploy to Production Location
+      uses: shimataro/ssh-key-action@v2
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./out
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
+    - name: Deploy with rsync
+      run: rsync -avz ./out/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_LOC_PROD}}
